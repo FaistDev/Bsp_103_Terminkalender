@@ -63,6 +63,8 @@ private AppointmentModell model = new AppointmentModell();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList.setComponentPopupMenu(jPopupMenu1);
+        jList.setFocusable(false);
         jScrollPane1.setViewportView(jList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,8 +90,9 @@ private AppointmentModell model = new AppointmentModell();
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
     AppointmentDlg dialog = new AppointmentDlg(this,true);
     dialog.setVisible(true);
-    if(dialog.isCheck == true){
+    if(dialog.isCheck() == true){
         Appointment a = dialog.getAppointment();
+        model.add(a);
     } 
     }//GEN-LAST:event_addActionPerformed
 

@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,6 +16,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
 
     private Appointment appointment=null;
     private boolean check=false;
+    private int index;
 
     public Appointment getAppointment() {
         return appointment;
@@ -24,6 +26,21 @@ public class AppointmentDlg extends javax.swing.JDialog {
         return check;
     }
     
+    public void setIndex(int index,ArrayList<Appointment> list){
+        this.index=index;
+        Appointment a = list.get(index);
+        int year = a.getDateTime.getYear();
+        int month = a.getDateTime.getMonth();
+        int day = a.getDateTime.getDay();
+        int hour = a.getDateTime.getHour();
+        int minute = a.getDateTime.getMinute();
+        etDay.setText(""+day);
+        etMonth.setText(""+month);
+        etYear.setText(""+year);
+        etHour.setText(""+hour);
+        etMinute.setText(""+minute);
+        etText.setText(""+a.getText());
+    }
     
     /**
      * Creates new form AppointmentDlg
@@ -31,6 +48,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
     public AppointmentDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -64,31 +82,37 @@ public class AppointmentDlg extends javax.swing.JDialog {
         jLabel1.setText("Tag");
         getContentPane().add(jLabel1);
 
+        etDay.setText("23");
         getContentPane().add(etDay);
 
         jLabel2.setText("Monat");
         getContentPane().add(jLabel2);
 
+        etMonth.setText("04");
         getContentPane().add(etMonth);
 
         jLabel3.setText("Jahr");
         getContentPane().add(jLabel3);
 
+        etYear.setText("2002");
         getContentPane().add(etYear);
 
         jLabel4.setText("Stunde");
         getContentPane().add(jLabel4);
 
+        etHour.setText("02");
         getContentPane().add(etHour);
 
         jLabel5.setText("Minute");
         getContentPane().add(jLabel5);
 
+        etMinute.setText("15");
         getContentPane().add(etMinute);
 
         jLabel6.setText("Text");
         getContentPane().add(jLabel6);
 
+        etText.setText("Geburtstag Ben");
         getContentPane().add(etText);
 
         btConfirm.setText("Übernehmen");

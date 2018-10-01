@@ -53,6 +53,11 @@ private AppointmentModell model = new AppointmentModell();
         jPopupMenu1.add(delete);
 
         change.setText("ändern");
+        change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(change);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,8 +102,19 @@ private AppointmentModell model = new AppointmentModell();
     }//GEN-LAST:event_addActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-    
+    model.delete(jList.getSelectedIndex());    
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
+    AppointmentDlg dialog = new AppointmentDlg(this,true);
+    dialog.setIndex(jList.getSelectedIndex(),model.getList());
+    dialog.setVisible(true);
+    if(dialog.isCheck() == true){
+        Appointment a = dialog.getAppointment();
+        model.change(a,jList.getSelectedIndex());
+    }
+    
+    }//GEN-LAST:event_changeActionPerformed
 
     /**
      * @param args the command line arguments

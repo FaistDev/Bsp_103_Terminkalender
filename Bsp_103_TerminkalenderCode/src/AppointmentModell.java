@@ -23,6 +23,10 @@ public class AppointmentModell extends AbstractListModel{
     public Object getElementAt(int index) {
         return appointments.get(index);
     }
+    public void add(Appointment a){
+        appointments.add(a);
+        fireIntervalAdded(this, appointments.size()-1, appointments.size()-1);
+    }
     
    
     

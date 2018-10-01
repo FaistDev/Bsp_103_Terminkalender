@@ -20,4 +20,6 @@ public class AppointmentModell extends AbstractListModel {
         fireIntervalAdded(this, appointments.size()-1, appointments.size()-1);
     }
     
+   
+    
 }

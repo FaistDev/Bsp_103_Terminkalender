@@ -120,11 +120,13 @@ public class AppointmentDlg extends javax.swing.JDialog {
         LocalDateTime date=LocalDateTime.of(year,month,day,hour,minute);
         appointment=new Appointment(date,etText.getText());
         check=true;
+        this.dispose();
     }//GEN-LAST:event_btConfirmActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         // TODO add your handling code here:
         check=false;
+        this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
     /**

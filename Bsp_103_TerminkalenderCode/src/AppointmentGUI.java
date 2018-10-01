@@ -45,6 +45,11 @@ private AppointmentModell model = new AppointmentModell();
         jPopupMenu1.add(add);
 
         delete.setText("löschen");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(delete);
 
         change.setText("ändern");
@@ -87,6 +92,10 @@ private AppointmentModell model = new AppointmentModell();
         Appointment a = dialog.getAppointment();
     } 
     }//GEN-LAST:event_addActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments

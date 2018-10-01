@@ -1,3 +1,6 @@
+
+import java.time.LocalDateTime;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,18 @@
  */
 public class AppointmentDlg extends javax.swing.JDialog {
 
+    private Appointment appointment=null;
+    private boolean check=false;
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+    
+    
     /**
      * Creates new form AppointmentDlg
      */
@@ -27,21 +42,92 @@ public class AppointmentDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        etDay = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        etMonth = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        etYear = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        etHour = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        etMinute = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        etText = new javax.swing.JTextField();
+        btConfirm = new javax.swing.JButton();
+        btCancel = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Termin-Eingabe");
+        getContentPane().setLayout(new java.awt.GridLayout(7, 2));
+
+        jLabel1.setText("Tag");
+        getContentPane().add(jLabel1);
+
+        getContentPane().add(etDay);
+
+        jLabel2.setText("Monat");
+        getContentPane().add(jLabel2);
+
+        getContentPane().add(etMonth);
+
+        jLabel3.setText("Jahr");
+        getContentPane().add(jLabel3);
+
+        getContentPane().add(etYear);
+
+        jLabel4.setText("Stunde");
+        getContentPane().add(jLabel4);
+
+        getContentPane().add(etHour);
+
+        jLabel5.setText("Minute");
+        getContentPane().add(jLabel5);
+
+        getContentPane().add(etMinute);
+
+        jLabel6.setText("Text");
+        getContentPane().add(jLabel6);
+
+        getContentPane().add(etText);
+
+        btConfirm.setText("Übernehmen");
+        btConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConfirmActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btConfirm);
+
+        btCancel.setText("Abbrechen");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btCancel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmActionPerformed
+        // TODO add your handling code here:
+        int year = Integer.parseInt(etYear.getText());
+        int month = Integer.parseInt(etMonth.getText());
+        int day = Integer.parseInt(etDay.getText());
+        int hour = Integer.parseInt(etHour.getText());
+        int minute = Integer.parseInt(etMinute.getText());
+        LocalDateTime date=LocalDateTime.of(year,month,day,hour,minute);
+        appointment=new Appointment(date,etText.getText());
+        check=true;
+        this.dispose();
+    }//GEN-LAST:event_btConfirmActionPerformed
+
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        // TODO add your handling code here:
+        check=false;
+        this.dispose();
+    }//GEN-LAST:event_btCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +172,19 @@ public class AppointmentDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancel;
+    private javax.swing.JButton btConfirm;
+    private javax.swing.JTextField etDay;
+    private javax.swing.JTextField etHour;
+    private javax.swing.JTextField etMinute;
+    private javax.swing.JTextField etMonth;
+    private javax.swing.JTextField etText;
+    private javax.swing.JTextField etYear;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Ben
  */
-public class Appointment {
+public class Appointment implements Serializable{
 
     private LocalDateTime dateTime;
     private String text;

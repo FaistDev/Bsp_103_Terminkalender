@@ -15,7 +15,9 @@ private AppointmentModell model = new AppointmentModell();
      */
     public AppointmentGUI() {
         initComponents();
+        model.loadData();
         jList.setModel(model);
+        
     }
     
     
@@ -62,6 +64,11 @@ private AppointmentModell model = new AppointmentModell();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Termin-Kalender");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -115,6 +122,10 @@ private AppointmentModell model = new AppointmentModell();
     }
     
     }//GEN-LAST:event_changeActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    model.saveData();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

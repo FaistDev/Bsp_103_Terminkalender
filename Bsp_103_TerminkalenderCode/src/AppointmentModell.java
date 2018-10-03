@@ -35,12 +35,13 @@ public class AppointmentModell extends AbstractListModel {
         fireIntervalRemoved(this, idx, idx);
     }
 
-    public ArrayList<Appointment> getAppointments() {
+    public ArrayList<Appointment> getList() {
         return appointments;
     }
     public void change(Appointment a,int idx){
         appointments.set(idx, a);
         fireContentsChanged(this, idx, idx);
     }
+    
 
 }

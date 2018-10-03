@@ -29,11 +29,11 @@ public class AppointmentDlg extends javax.swing.JDialog {
     public void setIndex(int index,ArrayList<Appointment> list){
         this.index=index;
         Appointment a = list.get(index);
-        int year = a.getDateTime.getYear();
-        int month = a.getDateTime.getMonth();
-        int day = a.getDateTime.getDay();
-        int hour = a.getDateTime.getHour();
-        int minute = a.getDateTime.getMinute();
+        int year = a.getDateTime().getYear();
+        int month = a.getDateTime().getMonthValue();
+        int day = a.getDateTime().getDayOfMonth();
+        int hour = a.getDateTime().getHour();
+        int minute = a.getDateTime().getMinute();
         etDay.setText(""+day);
         etMonth.setText(""+month);
         etYear.setText(""+year);

@@ -1,4 +1,9 @@
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -30,7 +35,7 @@ public class AppointmentModell extends AbstractListModel {
         fireIntervalAdded(this, appointments.size() - 1, appointments.size() - 1);
     }
 
-    public void delete(int idx) {
+    public void delete(int idx) throws Exception{
         appointments.remove(idx);
         fireIntervalRemoved(this, idx, idx);
     }
@@ -43,5 +48,27 @@ public class AppointmentModell extends AbstractListModel {
         fireContentsChanged(this, idx, idx);
     }
     
+    public void saveData() throws Exception {
+        File f = new File("./data.bin");
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+        for (Appointment s : appointments) {
+            oos.writeObject(s);
+        }
+        oos.flush();
+    }
+    
+    public void loadData() throws Exception {
+        File f = new File("./data.bin");
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+        Object s = null;
+        while ((s = ois.readObject()) != null) {
+            try {
+                add((Appointment) s);
+            } catch (Exception e) {
+                throw new Exception(e.getMessage());
+            }
+
+        }
+    }
 
 }

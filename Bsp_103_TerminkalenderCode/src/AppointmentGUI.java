@@ -15,7 +15,14 @@ private AppointmentModell model = new AppointmentModell();
      */
     public AppointmentGUI() {
         initComponents();
+        try{
+            model.loadData();
+        }catch(Exception ex){
+        exceptionlabel.setText(ex.getMessage());
+        }
+        
         jList.setModel(model);
+        
     }
     
     
@@ -35,6 +42,7 @@ private AppointmentModell model = new AppointmentModell();
         change = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
+        exceptionlabel = new javax.swing.JLabel();
 
         add.setText("hinzufügen");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +70,11 @@ private AppointmentModell model = new AppointmentModell();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Termin-Kalender");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -76,16 +89,20 @@ private AppointmentModell model = new AppointmentModell();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exceptionlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exceptionlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -102,7 +119,12 @@ private AppointmentModell model = new AppointmentModell();
     }//GEN-LAST:event_addActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-    model.delete(jList.getSelectedIndex());    
+    try{
+        model.delete(jList.getSelectedIndex());
+    }catch(Exception ex){
+        exceptionlabel.setText(ex.getMessage());
+    }
+            
     }//GEN-LAST:event_deleteActionPerformed
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
@@ -115,6 +137,14 @@ private AppointmentModell model = new AppointmentModell();
     }
     
     }//GEN-LAST:event_changeActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    try{
+        model.saveData();
+    }catch(Exception ex){
+        exceptionlabel.setText(ex.getMessage());
+    }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -155,6 +185,7 @@ private AppointmentModell model = new AppointmentModell();
     private javax.swing.JMenuItem add;
     private javax.swing.JMenuItem change;
     private javax.swing.JMenuItem delete;
+    private javax.swing.JLabel exceptionlabel;
     private javax.swing.JList<String> jList;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
